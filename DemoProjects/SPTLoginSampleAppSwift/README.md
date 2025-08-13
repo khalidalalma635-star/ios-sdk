@@ -14,7 +14,7 @@ Steps:
 4. Edit Settings and add the bundleId `com.spotify.SPTLoginSampleAppSwift`
 3. Copy your `clientID` in `ViewController.swift`
 
-For this project is required to perform an OAuth token swap. 
+For this project is required to perform an OAuth token swap.
 
 A sample server is provided for testing. Navigate to the directory containing this README in your terminal and run the following commands:
 

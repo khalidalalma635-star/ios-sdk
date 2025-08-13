@@ -4,8 +4,8 @@ targets:
     type: application
     platform: iOS
     deploymentTarget: "13.0"
-    sources: 
-        - path: NowPlayingView   
+    sources:
+        - path: NowPlayingView
         - path: NowPlayingView/Info.plist
           buildPhase: none
         - path: README.md

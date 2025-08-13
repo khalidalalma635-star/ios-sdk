@@ -3,11 +3,11 @@ import UIKit
 class ConnectButton: UIButton {
 
     fileprivate let buttonBackgroundColor =
-        UIColor(red:(29.0 / 255.0), green:(185.0 / 255.0), blue:(84.0 / 255.0), alpha:1.0)
+        UIColor(red:29.0 / 255.0, green:185.0 / 255.0, blue:84.0 / 255.0, alpha:1.0)
     fileprivate let titleAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: UIFont.systemFontSize, weight: .heavy),
         .foregroundColor: UIColor.white,
-        .kern: 2.0
+        .kern: 2.0,
     ]
 
     init(title: String) {
@@ -20,6 +20,7 @@ class ConnectButton: UIButton {
         setAttributedTitle(title, for: .normal)
     }
 
+    @available(*, unavailable)
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

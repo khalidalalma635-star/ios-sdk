@@ -36,7 +36,8 @@
 
 - (void)setHighlighted:(BOOL)highlighted
 {
-    self.backgroundColor = highlighted ? [self.class customHighlightedBackgroundColor] : [self.class customBackgroundColor];
+    self.backgroundColor =
+        highlighted ? [self.class customHighlightedBackgroundColor] : [self.class customBackgroundColor];
 }
 
 @end

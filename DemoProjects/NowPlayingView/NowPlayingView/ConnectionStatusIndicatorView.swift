@@ -2,13 +2,13 @@ import UIKit
 
 /// Connection status view
 class ConnectionStatusIndicatorView : UIView {
-    
+
     enum State {
         case disconnected
         case connecting
         case connected
     }
-    
+
     var state: State = .disconnected {
         didSet {
             self.setNeedsDisplay()
@@ -20,36 +20,36 @@ class ConnectionStatusIndicatorView : UIView {
                 displayLink?.add(to: RunLoop.main, forMode: RunLoop.Mode.common)
             } else {
                 displayLink?.remove(from: RunLoop.main, forMode: RunLoop.Mode.common)
-                displayLink = nil;
+                displayLink = nil
             }
         }
     }
-    
+
     var displayLink: CADisplayLink?
-    
+
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        self.clearsContextBeforeDrawing = true;
+        self.clearsContextBeforeDrawing = true
         self.backgroundColor = UIColor.clear
     }
-    
+
     override func draw(_ rect: CGRect) {
         guard let context = UIGraphicsGetCurrentContext() else {
             return
         }
-        
+
         let size = self.bounds.size
         let path = CGPath(roundedRect: self.bounds, cornerWidth: size.width/2, cornerHeight: size.height/2, transform: nil)
         context.addPath(path)
-        
+
         context.setFillColor(fillColor())
         context.fillPath()
     }
-    
+
     private func timebasedValue() -> CGFloat {
         return CGFloat(abs(sin(Date().timeIntervalSinceReferenceDate*4)))
     }
-    
+
     private func fillColor() -> CGColor {
         switch state {
         case .disconnected:

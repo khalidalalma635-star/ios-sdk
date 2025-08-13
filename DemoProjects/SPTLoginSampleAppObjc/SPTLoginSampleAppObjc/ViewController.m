@@ -12,11 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ConnectView.h"
 #import "ViewController.h"
+#import "ConnectView.h"
 
-static NSString * const SpotifyClientID = @"<#ClientID#>";
-static NSString * const SpotifyRedirectURLString = @"spotify-login-sdk-test-app-objc://spotify-login-callback";
+static NSString *const SpotifyClientID = @"<#ClientID#>";
+static NSString *const SpotifyRedirectURLString = @"spotify-login-sdk-test-app-objc://spotify-login-callback";
 
 @interface ViewController ()
 @end
@@ -30,13 +30,13 @@ static NSString * const SpotifyRedirectURLString = @"spotify-login-sdk-test-app-
     /*
      This configuration object holds your client ID and redirect URL.
      */
-    SPTConfiguration *configuration = [SPTConfiguration configurationWithClientID:SpotifyClientID
-                                                                      redirectURL:[NSURL URLWithString:SpotifyRedirectURLString]];
+    SPTConfiguration *configuration =
+        [SPTConfiguration configurationWithClientID:SpotifyClientID
+                                        redirectURL:[NSURL URLWithString:SpotifyRedirectURLString]];
     /*
      The session manager lets you authorize, get access tokens, and so on.
      */
-    self.sessionManager = [SPTSessionManager sessionManagerWithConfiguration:configuration
-                                                                    delegate:self];
+    self.sessionManager = [SPTSessionManager sessionManagerWithConfiguration:configuration delegate:self];
     [super viewDidLoad];
 }
 
@@ -62,23 +62,17 @@ static NSString * const SpotifyRedirectURLString = @"spotify-login-sdk-test-app-
 
 - (void)sessionManager:(SPTSessionManager *)manager didInitiateSession:(SPTSession *)session
 {
-    [self presentAlertControllerWithTitle:@"Authorization Succeeded"
-                                  message:session.description
-                              buttonTitle:@"Nice"];
+    [self presentAlertControllerWithTitle:@"Authorization Succeeded" message:session.description buttonTitle:@"Nice"];
 }
 
 - (void)sessionManager:(SPTSessionManager *)manager didFailWithError:(NSError *)error
 {
-    [self presentAlertControllerWithTitle:@"Authorization Failed"
-                                  message:error.description
-                              buttonTitle:@"Bummer"];
+    [self presentAlertControllerWithTitle:@"Authorization Failed" message:error.description buttonTitle:@"Bummer"];
 }
 
 - (void)sessionManager:(SPTSessionManager *)manager didRenewSession:(SPTSession *)session
 {
-    [self presentAlertControllerWithTitle:@"Session Renewed"
-                                  message:session.description
-                              buttonTitle:@"Sweet"];
+    [self presentAlertControllerWithTitle:@"Session Renewed" message:session.description buttonTitle:@"Sweet"];
 }
 
 #pragma mark - Set up view
@@ -86,7 +80,9 @@ static NSString * const SpotifyRedirectURLString = @"spotify-login-sdk-test-app-
 - (void)loadView
 {
     ConnectView *view = [ConnectView new];
-    [view.connectButton addTarget:self action:@selector(didTapAuthButton:) forControlEvents:UIControlEventTouchUpInside];
+    [view.connectButton addTarget:self
+                           action:@selector(didTapAuthButton:)
+                 forControlEvents:UIControlEventTouchUpInside];
     self.view = view;
 }
 
@@ -100,13 +96,12 @@ static NSString * const SpotifyRedirectURLString = @"spotify-login-sdk-test-app-
                                                                           preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *dismissAction = [UIAlertAction actionWithTitle:buttonTitle
                                                                 style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-            [alertController dismissViewControllerAnimated:YES completion:nil];
-        }];
+                                                              handler:^(UIAlertAction *_Nonnull action) {
+                                                                  [alertController dismissViewControllerAnimated:YES
+                                                                                                      completion:nil];
+                                                              }];
         [alertController addAction:dismissAction];
-        [self presentViewController:alertController
-                           animated:YES
-                         completion:nil];
+        [self presentViewController:alertController animated:YES completion:nil];
     });
 }
 

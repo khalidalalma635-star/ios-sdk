@@ -14,7 +14,7 @@
 
         self.backgroundColor = UIColor.whiteColor;
         self.translatesAutoresizingMaskIntoConstraints = YES;
-        self.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
+        self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         label.text = @"Connect your Spotify account";
         label.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -39,10 +39,10 @@
 {
     ConnectButton *connectButton = [ConnectButton buttonWithType:UIButtonTypeSystem];
     NSDictionary<NSAttributedStringKey, id> *attributes = @{
-                                                            NSFontAttributeName: [UIFont systemFontOfSize:UIFont.systemFontSize weight:UIFontWeightHeavy],
-                                                            NSForegroundColorAttributeName: UIColor.whiteColor,
-                                                            NSKernAttributeName: @2.0,
-                                                            };
+        NSFontAttributeName: [UIFont systemFontOfSize:UIFont.systemFontSize weight:UIFontWeightHeavy],
+        NSForegroundColorAttributeName: UIColor.whiteColor,
+        NSKernAttributeName: @2.0,
+    };
     NSAttributedString *attributedTitle = [[NSAttributedString alloc] initWithString:title attributes:attributes];
     [connectButton setAttributedTitle:attributedTitle forState:UIControlStateNormal];
     return connectButton;

@@ -1,13 +1,13 @@
-import UIKit
 import SpotifyiOS
+import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate,
-                     SPTAppRemoteDelegate {
+SPTAppRemoteDelegate {
 
     private let redirectUri = URL(string:"spotify-ios-test-app://spotify-login-callback")!
     private let clientIdentifier = "<#ClientId#>"
 
-    static private let kAccessTokenKey = "access-token-key"
+    private static let kAccessTokenKey = "access-token-key"
 
     var window: UIWindow?
 
@@ -31,7 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate,
             return
         }
 
-        let parameters = appRemote.authorizationParameters(from: url);
+        let parameters = appRemote.authorizationParameters(from: url)
 
         if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
             appRemote.connectionParameters.accessToken = access_token
@@ -39,11 +39,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate,
         } else if let errorDescription = parameters?[SPTAppRemoteErrorDescriptionKey] {
             playerViewController.showError(errorDescription)
         }
-
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        connect();
+        connect()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
@@ -74,9 +73,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate,
     }
 
     var playerViewController: ViewController {
-        get {
-            let navController = self.window?.rootViewController?.children[0] as! UINavigationController
-            return navController.topViewController as! ViewController
-        }
+        let navController = self.window?.rootViewController?.children[0] as! UINavigationController
+        return navController.topViewController as! ViewController
     }
 }

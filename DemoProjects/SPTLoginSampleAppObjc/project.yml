@@ -4,8 +4,8 @@ targets:
     type: application
     platform: iOS
     deploymentTarget: "13.0"
-    sources: 
-        - path: SPTLoginSampleAppObjc   
+    sources:
+        - path: SPTLoginSampleAppObjc
         - path: SPTLoginSampleAppObjc/Info.plist
           buildPhase: none
     settings:

@@ -1,5 +1,5 @@
-import UIKit
 import SpotifyiOS
+import UIKit
 
 class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
 
@@ -124,7 +124,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     }
 
     func updateViewBasedOnConnected() {
-        if (appRemote.isConnected) {
+        if appRemote.isConnected {
             connectButton.isHidden = true
             disconnectButton.isHidden = false
             connectLabel.isHidden = true
@@ -142,8 +142,8 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     }
 
     func fetchArtwork(for track:SPTAppRemoteTrack) {
-        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] (image, error) in
-            if let error = error {
+        appRemote.imageAPI?.fetchImage(forItem: track, with: CGSize.zero, callback: { [weak self] image, error in
+            if let error {
                 print("Error fetching track image: " + error.localizedDescription)
             } else if let image = image as? UIImage {
                 self?.imageView.image = image
@@ -152,19 +152,19 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     }
 
     func fetchPlayerState() {
-        appRemote.playerAPI?.getPlayerState({ [weak self] (playerState, error) in
-            if let error = error {
+        appRemote.playerAPI?.getPlayerState { [weak self] playerState, error in
+            if let error {
                 print("Error getting player state:" + error.localizedDescription)
             } else if let playerState = playerState as? SPTAppRemotePlayerState {
                 self?.update(playerState: playerState)
             }
-        })
+        }
     }
 
     // MARK: - Actions
 
     @objc func didTapPauseOrPlay(_ button: UIButton) {
-        if let lastPlayerState = lastPlayerState, lastPlayerState.isPaused {
+        if let lastPlayerState, lastPlayerState.isPaused {
             appRemote.playerAPI?.resume(nil)
         } else {
             appRemote.playerAPI?.pause(nil)
@@ -172,7 +172,7 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     }
 
     @objc func didTapDisconnect(_ button: UIButton) {
-        if (appRemote.isConnected) {
+        if appRemote.isConnected {
             appRemote.disconnect()
         }
     }
@@ -209,8 +209,8 @@ class ViewController: UIViewController, SPTSessionManagerDelegate, SPTAppRemoteD
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         updateViewBasedOnConnected()
         appRemote.playerAPI?.delegate = self
-        appRemote.playerAPI?.subscribe(toPlayerState: { (success, error) in
-            if let error = error {
+        appRemote.playerAPI?.subscribe(toPlayerState: { _, error in
+            if let error {
                 print("Error subscribing to player state:" + error.localizedDescription)
             }
         })

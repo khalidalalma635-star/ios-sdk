@@ -1,5 +1,34 @@
 # Changelog
 
+## Spotify iOS SDK v5.0.1
+
+What's New:
+
+- Replace deprecated keyWindow with proper window scene handling
+- Clean up auth sessions in dealloc
+- Update demo apps to support SceneDelegate
+- Update documentation
+
+## Spotify iOS SDK v5.0.0
+
+What's New:
+
+- Replace SPTAuthorizationMethod (NS_ENUM) with SPTAuthorizationOptions (NS_OPTIONS)
+- Add the new option 'spotifySchemeNotRegistered' to avoid using 'canOpenURL' if you have reached the 50-entry limit in your Info.plist file and cannot add the Spotify scheme.
+
+## Spotify iOS SDK v4.0.1
+
+What's New:
+
+- Fixed an issue with SPTAuthorizationMethodUniversalLinks
+
+## Spotify iOS SDK v4.0.0
+
+What's New:
+
+- Replace SPTAuthorizationOptions (NS_OPTIONS) with SPTAuthorizationMethod (NS_ENUM)
+- Add a new configuration method (SPTAuthorizationMethodUniversalLinks) that doesn't require to add the 'spotify' scheme to your Info.plist
+
 ## Spotify iOS SDK v3.0.0
 
 What's New:

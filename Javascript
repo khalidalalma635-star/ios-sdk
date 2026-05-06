@@ -1,0 +1,7 @@
+const container = document.getElementById("tracks");
+
+topTracks.forEach(track => {
+  const p = document.createElement("p");
+  p.textContent = `${track.name} by ${track.artists.map(a => a.name).join(", ")}`;
+  container.appendChild(p);
+});
